@@ -1,0 +1,32 @@
+<script>
+    function showLocation()
+    {
+        if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(function(pos)
+        {
+            lat = pos.coord.latitude;
+            long =pos.coord.longitude;
+            document.getElementById("latitude").innerHTML=lat;
+            document.getElementById("longitude").innerHTML=long;
+        
+        })
+    }
+}
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <h1> Location Tracker </h1>
+   Latitude : <span id="latitude"></span><br>
+   Longitude :<span id="longitude"></span><br>
+    <button onClick="showLocation()" > Get location </button>
+</head>
+<body>
+    
+</body>
+</html>

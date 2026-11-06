@@ -1,0 +1,32 @@
+<canvas id="mycanvas" width="200" height="100" 
+    style="border: 2px solid green;"></canvas>
+
+<script>
+    let c = document.getElementById("mycanvas")
+    let ctx = c.getContext("2d")
+    ctx.beginPath()
+    ctx.arc(90,50,30,0,Math.PI,true)
+    ctx.stroke()
+</script>
+
+
+<video id="localVideo" controls>
+    <source src="images\istockphoto-1918945253-640_adpp_is.mp4" type="video/mp4">
+</video>
+<button onclick="takeScreenshot()">Take Screenshot</button>
+
+<img id="Snap" width="640">
+<script>
+    function takeScreenshot()
+    {
+        let video = document.getElementById("localVideo")
+        let canvas = document.createElement("Canvas")
+
+        canvas.height = "480"
+        canvas.width = "640"
+        let ctx = canvas.getContext("2d")
+        ctx.drawImage(video,0,0,canvas.width,canvas.height)
+        let url = canvas.toDataURL("image/jpeg")
+        document.getElementById("Snap").setAttribute("src",url);
+    }
+</script>

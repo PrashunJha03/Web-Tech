@@ -1,0 +1,48 @@
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<style>
+    #skillSet
+    {
+        border: 1px solid black;
+        height: 200px;
+        width:300px;
+        margin-top: 50px;
+    }
+</style>
+
+<input type="text" id="skill">
+<button onclick="addSkill()"> Add Skills </button>
+
+<div id="skillSet"></div>
+
+<script>
+    function addSkill()
+    {
+
+
+
+        $('#skillSet').append($('<span>').html($('#skill')
+            .val())
+            .css({
+                'background-color' : 'black',
+                'color':'white',
+                'padding' : '3px',
+                'margin':'2px',
+                'display': 'inline-block'
+             }).append($('<span>').html('&#x274C').css({
+                'color':'red',
+                'margin':'2px',
+                'cursor':'pointer'
+             }).click(function() 
+             { $(this).parent().remove()
+             }
+            )
+))
+
+            $('#skill').val(' ');
+
+        
+    }
+
+
+
+</script>

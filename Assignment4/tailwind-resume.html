@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Tailwind Resume</title>
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Task 6: Reusable CSS component using @apply -->
+    <style type="text/tailwindcss">
+        .resume-card {
+            @apply rounded-xl border border-slate-200
+                   bg-white p-5 shadow-sm
+                   dark:border-slate-700 dark:bg-slate-800;
+        }
+
+        .resume-tag {
+            @apply rounded-full bg-blue-100 px-3 py-1
+                   text-sm font-medium text-blue-800
+                   dark:bg-blue-900 dark:text-blue-200;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800
+             dark:bg-slate-950 dark:text-slate-100">
+
+    <!-- Header -->
+    <header class="bg-blue-700 px-4 py-8 text-center text-white
+                   sm:px-8 lg:py-12">
+        <h1 class="text-3xl font-bold sm:text-4xl lg:text-5xl">
+            Prashun Kumar Jha
+        </h1>
+
+        <p class="mt-2 text-base text-blue-100 sm:text-lg">
+            Student | Aspiring Web Developer
+        </p>
+
+        <p class="mt-3 text-sm text-blue-100">
+            HTML • CSS • JavaScript • Python • Java  
+        </p>
+    </header>
+
+    <!-- Main content -->
+    <main class="mx-auto max-w-6xl px-4 py-6
+                 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+
+        <!-- Mobile: 1 column; medium and desktop: 2 columns -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+            <!-- About Me -->
+            <section class="resume-card">
+                <h2 class="mb-3 text-xl font-bold text-blue-700
+                           dark:text-blue-300 sm:text-2xl">
+                    About Me
+                </h2>
+
+                <p class="leading-7 text-slate-600
+                          dark:text-slate-300">
+                    I am a motivated student passionate about technology
+                    and web development. I enjoy learning programming,
+                    solving problems, and creating user-friendly websites.
+                    My goal is to develop practical skills through projects
+                    and continuous learning.
+                </p>
+            </section>
+
+            <!-- Skills -->
+            <section class="resume-card">
+                <h2 class="mb-4 text-xl font-bold text-blue-700
+                           dark:text-blue-300 sm:text-2xl">
+                    Skills
+                </h2>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="resume-tag">HTML</span>
+                    <span class="resume-tag">CSS</span>
+                    <span class="resume-tag">JavaScript</span>
+                    <span class="resume-tag">Python</span>
+                     <span class="resume-tag">Java</span>
+                    <span class="resume-tag">Communication</span>
+                    <span class="resume-tag">Problem Solving</span>
+
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="resume-card">
+                <h2 class="mb-3 text-xl font-bold text-blue-700
+                           dark:text-blue-300 sm:text-2xl">
+                    Education
+                </h2>
+
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-semibold">
+                        Bachelor's Degree / B.tech
+                    </h3>
+
+                    <p class="mt-1 text-slate-600 dark:text-slate-300">
+                        MAKAUT
+                    </p>
+
+                    <p class="mt-1 text-sm text-slate-500
+                              dark:text-slate-400">
+                         Completed: 2025
+                    </p>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="resume-card">
+                <h2 class="mb-4 text-xl font-bold text-blue-700
+                           dark:text-blue-300 sm:text-2xl">
+                    Projects
+                </h2>
+
+                <article class="mb-4 rounded-lg bg-slate-50 p-4
+                                dark:bg-slate-900">
+                    <h3 class="font-semibold">
+                        Personal Portfolio Website
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-600
+                              dark:text-slate-300">
+                        Built a portfolio webpage using HTML and CSS
+                        to showcase personal information and skills.
+                    </p>
+                </article>
+
+                <article class="rounded-lg bg-slate-50 p-4
+                                dark:bg-slate-900">
+                    <h3 class="font-semibold">
+                        Student Record Page
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-600
+                              dark:text-slate-300">
+                        Designed a simple webpage to organize student
+                        names, courses, and contact details.
+                    </p>
+                </article>
+            </section>
+
+            <!-- Contact: reusable card used again -->
+            <section class="resume-card md:col-span-2">
+                <h2 class="mb-3 text-xl font-bold text-blue-700
+                           dark:text-blue-300 sm:text-2xl">
+                    Contact
+                </h2>
+
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <p>
+                        Email:
+                        <a href="mailto:student@example.com"
+                           class="break-all text-blue-700 underline
+                                  dark:text-blue-300">
+                            prashun@example.com
+                        </a>
+                    </p>
+
+                    <p>
+                        Phone:
+                        <a href="tel:+911234567890"
+                           class="text-blue-700 underline
+                                  dark:text-blue-300">
+                            +91 12345 67890
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-4 bg-slate-200 px-4 py-5 text-center
+                   text-sm text-slate-600
+                   dark:bg-slate-900 dark:text-slate-400">
+        <p>&copy; 2026 Prashun. All rights reserved.</p>
+        <p class="mt-1">Created with Tailwind CSS</p>
+    </footer>
+
+</body>
+</html>

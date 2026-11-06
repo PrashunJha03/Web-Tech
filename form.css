@@ -1,0 +1,70 @@
+.navbar1
+{
+    width: 2000px;
+    height:100px;
+    background-color: rgb(54, 49, 153);
+    color: white;
+    display: flex;
+}
+
+.b1
+{
+    border: 1px solid white;
+    display: flex;
+    height: 80px;
+    width:1990px
+}
+.bl
+{
+     border: 1px solid white;
+    height:10px;
+    width:auto
+}
+
+.br
+{
+    border: 1px solid white;
+    height:10px;
+    width:auto
+}
+
+.container{
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E3F2FD;
+    height: 1000px;
+    width: 2000px;
+    border: 1px solid black;
+}
+
+.Myform{
+    height: 500px;
+    width:600px;
+    padding : 10px;
+    background-color: white;
+    border-radius: 10px;
+   
+
+}
+
+.MyInput{
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.mybutton{
+    background-color: navy;
+    width: 60px;
+    height: 30px;
+    color: white;
+    border-radius: 10px;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -1,0 +1,22 @@
+ body { font-family: Arial, sans-serif; font-size: 16px; background-color: #eaf2f8; color: #333333; margin: 0; padding: 20px; }
+
+ .resume-container { max-width: 800px; margin: auto; background-color: white; padding: 25px; border: 1px solid #cccccc; border-radius: 10px; }
+
+ .resume-header { text-align: center; background-color: #d6eaf8; padding: 20px; border-radius: 8px; }
+
+.resume-header h1 { font-size: 32px; margin-bottom: 5px; }
+
+.subtitle { font-size: 18px; color: #555555; }
+ .resume-section { margin-top: 20px; padding: 15px; border: 1px solid #dddddd; border-radius: 8px; background-color: #fafafa; }
+
+.resume-section h2 { font-size: 24px; color: #154360; border-bottom: 2px solid #5dade2; padding-bottom: 5px; }
+
+.resume-section p { font-size: 16px; line-height: 1.6; }
+
+ .skills-section { background-color: #fef9e7; }
+
+.skills-section li { margin: 8px 0; }
+
+ a { color: #0066cc; text-decoration: none; }
+
+a:hover { text-decoration: underline; }

@@ -1,0 +1,83 @@
+<!DOCTYPE html> <html lang="en">
+
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Student Registration Form</title> </head>
+
+<body>
+
+<h1>Student Registration Form</h1>
+
+<form>
+
+<!-- Full Name --> <label for="fullname">Full Name:</label> <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" minlength="3" maxlength="50" required >
+
+<br><br>
+
+<!-- Email --> <label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Enter your email" required >
+
+<br><br>
+
+<!-- Phone --> <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" placeholder="Enter 10 digit phone number" pattern="[0-9]{10}" required >
+
+<br><br>
+
+<!-- Date of Birth --> <label for="dob">Date of Birth:</label> <input type="date" id="dob" name="dob" >
+
+<br><br>
+
+<!-- Course --> <label for="course">Course:</label>
+
+<select id="course" name="course" required>
+
+<option value="">-- Select Course --</option> <option value="bca">BCA</option> <option value="btech">B.Tech</option> <option value="mca">MCA</option> <option value="pgcp">PGCP-AC</option>
+
+</select>
+
+<br><br>
+
+<!-- Gender --> <p>Gender:</p>
+
+<label> <input type="radio" name="gender" value="male" required> Male </label>
+
+<label> <input type="radio" name="gender" value="female"> Female </label>
+
+<label> <input type="radio" name="gender" value="other"> Other </label>
+
+<br><br>
+
+<!-- Skills / Interests --> <p>Skills / Interests:</p>
+
+<label> <input type="checkbox" name="skills" value="html"> HTML </label>
+
+<label> <input type="checkbox" name="skills" value="css"> CSS </label>
+
+<label> <input type="checkbox" name="skills" value="javascript"> JavaScript </label>
+
+<label> <input type="checkbox" name="skills" value="python"> Python </label>
+
+<br><br>
+
+<!-- Photo --> <label for="photo">Upload Photo:</label>
+
+<input type="file" id="photo" name="photo" accept="image/*" >
+
+<br><br>
+
+<!-- Password --> <label for="password">Password:</label>
+
+<input type="password" id="password" name="password" placeholder="Enter password" minlength="6" maxlength="20" required >
+
+<br><br>
+
+<!-- Terms and Conditions --> <label> <input type="checkbox" name="terms" required > I accept the terms and conditions. </label>
+
+<br><br>
+
+<!-- Buttons --> <button type="submit"> Submit </button>
+
+<button type="reset"> Reset </button>
+
+</form>
+
+</body>
+
+</html>

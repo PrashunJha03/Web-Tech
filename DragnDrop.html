@@ -1,0 +1,32 @@
+<style>
+    div{
+        height: 110px;
+        width: 110px;
+        border: 2px solid seagreen;
+    }
+</style>
+
+<div id = "div 1" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+
+<div id = "div 2" ondragover="allowDrop(event)" ondrop="drop(event)">
+
+<img id= "image" src = "images\black rose.jpg" width="100" draggable="true" ondragstart="drag(event)"></div>
+
+<script>
+
+    id=null
+    function drag(event)
+    {
+        id = event.target.id;
+    }
+
+    function allowDrop(event)
+    {
+        event.preventDefault()
+    }
+    function drop(event)
+    {
+        event.preventDefault()
+        event.target.appendChild(document.getElementById(id))
+    }
+</script>

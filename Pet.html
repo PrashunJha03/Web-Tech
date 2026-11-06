@@ -1,0 +1,100 @@
+<style>
+    #res h1{
+        color:green;
+    }
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care</title>
+    <script>
+        function handleSubmit(event)
+        {
+            console.log('event:',event)
+        } 
+        </script>
+</head>
+<body>
+    <h1>Pet Appointment Form</h1>
+
+    <form onsubmit="handleSubmit(event)">
+        <div style = "margin-bottom: 10px;" >
+        <label for = "name">Pet Name</label>
+        <input id = "name" name="name" type="text">
+        </div><br>
+
+        <div style = "margin-bottom: 10px;" >
+        <label for = "Age">Age</label>
+        <input id = "age" name="ag" type="number">
+        </div><br>
+
+        <div style = "margin-bottom: 10px;" >
+        <label for = "type">Pet Type</label>
+        <select id = "type">
+        <option >Cat</option>
+        <option >Dog</option>
+        </select></div><br> 
+
+            <div style = "margin-bottom: 10px;" >
+        <label for = "breed">Breed</label>
+        <input id = "breed" name="breed" type="text">
+         </div><br>
+
+         <div style = "margin-bottom: 10px;" >
+        <label for = "ownerName">Owner Name</label>
+        <input id = "ownerName" name="ownerName" type="text">
+         </div><br>
+
+         <div style = "margin-bottom: 10px;" >
+        <label for = "Appointment">Appointment Date</label>
+        <input id = "Appointment" name="Appointment" type="date">
+         </div><br>
+
+         <div style = "margin-bottom: 10px;" >
+        <label for = "contact">Owner Contact</label>
+        <input id = "contact" name="contact" type="tel" maxlength="10">
+         </div><br>
+
+        <button type="submit"> Submit</button>
+
+        <div id="res" style="res h1{color: green;}"></div>
+    
+    
+    </form>
+
+<script>
+    function handleSubmit()
+    {
+        event.preventDefault();
+        let pname = document.getElementById('name').value;
+        let age = document.getElementById('age').value;
+        let type = document.getElementById('type').value;
+        let breed = document.getElementById('breed').value;
+        let ownerName = document.getElementById('ownerName').value;
+        let Appointment = document.getElementById('Appointment').value;
+        let contact = document.getElementById('contact').value;
+
+
+        // document.write(`Details fetched : ${pname},  ${age},  ${type},  ${ownerName},  ${Appointment},  ${contact} `)
+        
+        document.getElementById('res').innerHTML =
+        `<h1>Details Submitted Successfully</h1><br>
+         <h3> Details :</h3>
+        <p> Pet name : ${pname}</p>
+        <p> Age : ${age}</p>
+        <p> Type : ${type}</p>
+        <p> Breed: ${breed}</p>
+        <p> Owner : ${ownerName}</p>
+        <p> Appointment date : ${Appointment}</p>
+        <p> Contact: ${contact}</p>`
+
+        console.log(`Details fetched : ${pname},  ${age},  ${type}, ${breed}, ${ownerName},  ${Appointment},  ${contact} `);
+    }
+
+    
+</script>
+
+</body>
+</html>

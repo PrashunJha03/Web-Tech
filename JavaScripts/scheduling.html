@@ -1,0 +1,34 @@
+
+<script>
+    function showAlert()
+    {
+        alert("5 sec later")
+    }
+    setTimeout(showAlert,5000)
+
+    function showDate()
+    {
+        const now = new Date();
+        document.getElementById('date').innerHTML=now
+    }
+    let clock = setInterval(showDate,1000)
+
+    function stopClock()
+    {
+        clearInterval(clock)
+    }
+
+</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduling</title>
+</head>
+<body>
+    
+<p id="date"></p>
+<button onclick="stopClock()">Stop Clock</button>
+
+</body>
+</html>

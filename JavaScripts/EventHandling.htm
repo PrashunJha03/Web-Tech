@@ -1,0 +1,18 @@
+<img src="/images/red rose.webp" id="red" width = "700">
+
+<script>
+    let red = document.getElementById("red")
+    red.addEventListener("mouseover",redRose)
+    red.addEventListener("mouseout",blackRose)
+
+    function redRose()
+    {
+        document.getElementById("red").src="/images/red rose.webp"
+    }
+    
+    function blackRose()
+    {
+        document.getElementById("red").src="/images/black rose.jpg"
+    }
+
+</script>

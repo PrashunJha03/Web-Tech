@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Appointment Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 25px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #26354a;
+        }
+
+        form, .dashboard {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #00000015;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid #8bbcff;
+            border-color: #2563eb;
+        }
+
+        .error {
+            color: #d11a2a;
+            font-size: 13px;
+            min-height: 15px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background: #2563eb;
+            margin-top: 18px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .success {
+            color: #15803d;
+            background: #dcfce7;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #26354a;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            margin: 0;
+        }
+
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            form, .dashboard {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🐾 Pet Appointment Form</h1>
+
+    <form id="petForm" novalidate>
+        <div class="form-grid">
+
+            <div class="field">
+                <label for="petName">Pet Name</label>
+                <input id="petName" name="petName" type="text"
+                       placeholder="Enter pet name" required>
+                <span class="error" id="petNameError"></span>
+            </div>
+
+            <div class="field">
+                <label for="age">Age</label>
+                <input id="age" name="age" type="number"
+                       placeholder="Enter pet age" required>
+                <span class="error" id="ageError"></span>
+            </div>
+
+            <div class="field">
+                <label for="petType">Pet Type</label>
+                <select id="petType" name="petType" required>
+                    <option value="">Select pet type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span class="error" id="petTypeError"></span>
+            </div>
+
+            <div class="field">
+                <label for="breed">Breed</label>
+                <input id="breed" name="breed" type="text"
+                       placeholder="Enter breed" required>
+                <span class="error" id="breedError"></span>
+            </div>
+
+            <div class="field">
+                <label for="ownerName">Owner Name</label>
+                <input id="ownerName" name="ownerName" type="text"
+                       placeholder="Enter owner name" required>
+                <span class="error" id="ownerNameError"></span>
+            </div>
+
+            <div class="field">
+                <label for="appointmentDate">Appointment Date</label>
+                <input id="appointmentDate" name="appointmentDate"
+                       type="date" required>
+                <span class="error" id="appointmentDateError"></span>
+            </div>
+
+            <div class="field">
+                <label for="contact">Owner Contact Number</label>
+                <input id="contact" name="contact" type="text"
+                       inputmode="numeric" maxlength="10"
+                       placeholder="10-digit number" required>
+                <span class="error" id="contactError"></span>
+            </div>
+
+        </div>
+
+        <button type="submit">Book Appointment</button>
+        <button type="reset" style="background:#64748b">Clear Form</button>
+
+        <div id="successMessage" role="status" aria-live="polite"></div>
+    </form>
+
+    <section class="dashboard">
+        <h2>Appointment Dashboard</h2>
+
+        <p id="appointmentCount">Total Appointments: 0</p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pet Name</th>
+                        <th>Age</th>
+                        <th>Pet Type</th>
+                        <th>Breed</th>
+                        <th>Owner Name</th>
+                        <th>Appointment Date</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="appointmentTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+<script>
+    const form = document.getElementById('petForm');
+
+    const fields = [
+        'petName',
+        'age',
+        'petType',
+        'breed',
+        'ownerName',
+        'appointmentDate',
+        'contact'
+    ];
+
+    // Regular expressions
+    const textRegex = /^[a-zA-Z\s]+$/;
+    const numberRegex = /^[0-9]+$/;
+    const ageRegex = /^[0-9]{1,2}$/;
+    const contactRegex = /^[0-9]{10}$/;
+
+    // Set today's date as the earliest appointment date
+    const today = new Date();
+    const localToday = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, '0'),
+        String(today.getDate()).padStart(2, '0')
+    ].join('-');
+
+    document.getElementById('appointmentDate').min = localToday;
+
+    // Read appointments from localStorage
+    function getAppointments() {
+        try {
+            const saved = localStorage.getItem('petAppointments');
+            const appointments = saved ? JSON.parse(saved) : [];
+
+            return Array.isArray(appointments) ? appointments : [];
+        } catch (error) {
+            console.error('Unable to read appointments:', error);
+            return [];
+        }
+    }
+
+    // Display a field-specific validation error
+    function showError(field, message) {
+        document.getElementById(field + 'Error').textContent = message;
+    }
+
+    // Clear all previous errors
+    function clearErrors() {
+        fields.forEach(function(field) {
+            showError(field, '');
+        });
+
+        document.getElementById('successMessage').textContent = '';
+        document.getElementById('successMessage').className = '';
+    }
+
+    // Validate all form fields
+    function validateForm(data) {
+        let valid = true;
+
+        if (!textRegex.test(data.petName.trim())) {
+            showError('petName', 'Use letters and spaces only.');
+            valid = false;
+        }
+
+        if (!ageRegex.test(data.age) ||
+            Number(data.age) < 1 ||
+            Number(data.age) > 99) {
+            showError('age', 'Enter an age from 1 to 99.');
+            valid = false;
+        } else if (!numberRegex.test(data.age)) {
+            showError('age', 'Numbers only.');
+            valid = false;
+        }
+
+        if (!data.petType) {
+            showError('petType', 'Please select a pet type.');
+            valid = false;
+        }
+
+        if (!textRegex.test(data.breed.trim())) {
+            showError('breed', 'Use letters and spaces only.');
+            valid = false;
+        }
+
+        if (!textRegex.test(data.ownerName.trim())) {
+            showError('ownerName', 'Use letters and spaces only.');
+            valid = false;
+        }
+
+        if (!data.appointmentDate ||
+            data.appointmentDate < localToday) {
+            showError('appointmentDate',
+                'Select today or a future date.');
+            valid = false;
+        }
+
+        if (!contactRegex.test(data.contact)) {
+            showError('contact', 'Enter exactly 10 digits.');
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        clearErrors();
+
+        // Collect the input values
+        const petData = {
+            petName: document.getElementById('petName').value.trim(),
+            age: document.getElementById('age').value.trim(),
+            petType: document.getElementById('petType').value,
+            breed: document.getElementById('breed').value.trim(),
+            ownerName: document.getElementById('ownerName').value.trim(),
+            appointmentDate:
+                document.getElementById('appointmentDate').value,
+            contact: document.getElementById('contact').value.trim()
+        };
+
+        // Stop if validation fails
+        if (!validateForm(petData)) {
+            return;
+        }
+
+        // Fetch existing appointments
+        const appointments = getAppointments();
+
+        // Add the new appointment
+        appointments.push(petData);
+
+        // Save all appointments
+        try {
+            localStorage.setItem(
+                'petAppointments',
+                JSON.stringify(appointments)
+            );
+        } catch (error) {
+            console.error('Unable to save appointments:', error);
+            alert('Could not save data. Check browser storage.');
+            return;
+        }
+
+        // Show submitted data in the console
+        console.log('Appointment submitted successfully:', petData);
+        console.table(appointments);
+
+        // Show success message
+        const success = document.getElementById('successMessage');
+        success.textContent = 'Appointment booked successfully!';
+        success.className = 'success';
+
+        // Refresh the dashboard
+        renderAppointments();
+
+        // Clear form fields
+        form.reset();
+    });
+
+    // Render appointments in the dashboard
+    function renderAppointments() {
+        const appointments = getAppointments();
+        const table = document.getElementById('appointmentTable');
+
+        table.replaceChildren();
+
+        appointments.forEach(function(pet, index) {
+            const row = document.createElement('tr');
+
+            const values = [
+                pet.petName,
+                pet.age,
+                pet.petType,
+                pet.breed,
+                pet.ownerName,
+                pet.appointmentDate,
+                pet.contact
+            ];
+
+            values.forEach(function(value) {
+                const cell = document.createElement('td');
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            // Add delete button
+            const actionCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+
+            deleteButton.textContent = 'Delete';
+            deleteButton.type = 'button';
+            deleteButton.className = 'delete-btn';
+
+            deleteButton.addEventListener('click', function() {
+                deleteAppointment(index);
+            });
+
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
+            table.appendChild(row);
+        });
+
+        document.getElementById('appointmentCount').textContent =
+            'Total Appointments: ' + appointments.length;
+    }
+
+    // Delete a saved appointment
+    function deleteAppointment(index) {
+        const appointments = getAppointments();
+
+        if (index < 0 || index >= appointments.length) {
+            return;
+        }
+
+        appointments.splice(index, 1);
+
+        try {
+            localStorage.setItem(
+                'petAppointments',
+                JSON.stringify(appointments)
+            );
+
+            renderAppointments();
+        } catch (error) {
+            console.error('Unable to delete appointment:', error);
+            alert('Could not update browser storage.');
+        }
+    }
+
+    // Show previously saved appointments when the page opens
+    renderAppointments();
+</script>
+
+</body>
+</html>
